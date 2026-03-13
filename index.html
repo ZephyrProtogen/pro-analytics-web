@@ -3,41 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Analytics | Elite Commercial Marketplace Monitoring</title>
-    <meta name="description" content="Dominate the marketplace with Pro Analytics. The most advanced real-time monitoring engine for elite commercial performance. Lightning speed, secure filters, and global radar.">
-    <meta name="keywords" content="marketplace analytics, commercial monitoring, pro analytics, marketplace bot, real-time data, elite monitoring">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
+    <title>Pro Analytics - Next Generation Market Monitoring</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
                     colors: {
                         dark: '#0d0d0d',
                         accent: '#3a8cff',
                     },
                     animation: {
-                        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
                         'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
-                        'glow-pulse': {
-                            '0%, 100%': { opacity: 0.5, filter: 'blur(80px)' },
-                            '50%': { opacity: 0.8, filter: 'blur(120px)' }
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px #3a8cff, 0 0 10px #3a8cff' },
+                            '100%': { boxShadow: '0 0 20px #3a8cff, 0 0 30px #3a8cff' }
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
@@ -49,439 +35,343 @@
         }
     </script>
     <style>
-        body { background-color: #0d0d0d; color: #ffffff; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .text-gradient { background: linear-gradient(to right, #3a8cff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .bg-grid { background-size: 50px 50px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px); }
-        .glowing-aura { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(58, 140, 255, 0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
-        #purchase-modal { display: none; }
-        #purchase-modal.active { display: flex; }
-        .pricing-img { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .pricing-card:hover .pricing-img { transform: scale(1.15); }
-        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .active-faq .faq-answer { max-height: 200px; }
-        .active-faq .faq-icon { transform: rotate(45deg); }
+        .typing-container { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid #3a8cff; animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #3a8cff; } }
+        .bg-grid { background-size: 40px 40px; background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px); }
+        #modal { display: none; }
+        #modal.active { display: flex; }
     </style>
 </head>
-<body class="bg-dark text-white font-sans antialiased bg-grid relative">
+<body class="bg-dark text-white antialiased bg-grid relative">
     
     <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 glass">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-tighter flex items-center gap-2">
-                <i data-lucide="radar" class="text-accent w-8 h-8"></i>
-                <span class="text-gradient">PRO ANALYTICS</span>
-            </div>
-            <div class="hidden md:flex space-x-10 items-center font-medium text-sm uppercase tracking-widest">
-                <a href="#features" class="hover:text-accent transition-all" data-i18n="nav_features">Features</a>
-                <a href="#screenshots" class="hover:text-accent transition-all" data-i18n="nav_screenshots">Screenshots</a>
-                <a href="#pricing" class="hover:text-accent transition-all" data-i18n="nav_pricing">Pricing</a>
-                <a href="#faq" class="hover:text-accent transition-all" data-i18n="nav_faq">FAQ</a>
-                <a href="#contact" class="hover:text-accent transition-all" data-i18n="nav_contact">Contact</a>
-                <button id="lang-toggle" class="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-accent/50 transition-all bg-white/5">
-                    <span id="lang-text">EN</span>
-                </button>
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gradient tracking-tighter">Pro Analytics</div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#features" class="hover:text-accent transition-colors" data-i18n="nav_features">Features</a>
+                <a href="#showcase" class="hover:text-accent transition-colors" data-i18n="nav_screenshots">Screenshots</a>
+                <a href="#pricing" class="hover:text-accent transition-colors" data-i18n="nav_pricing">Pricing</a>
+                <a href="#faq" class="hover:text-accent transition-colors" data-i18n="nav_faq">FAQ</a>
+                <a href="#contact" class="hover:text-accent transition-colors" data-i18n="nav_contact">Contact</a>
+                <button id="lang-toggle" class="px-3 py-1 rounded border border-white/20 hover:border-accent transition-colors">EN</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-48 pb-32 px-6 min-h-screen flex flex-col justify-center items-center text-center overflow-hidden">
-        <div class="glowing-aura animate-glow-pulse top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-        <div class="z-10 max-w-4xl" data-aos="zoom-out" data-aos-duration="1200">
-            <h1 class="text-6xl md:text-8xl font-black mb-8 leading-tight tracking-tighter" data-i18n="hero_title">
-                ELITE <span class="text-gradient">COMMERCIAL</span> MONITORING
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-400 mb-12 font-medium max-w-2xl mx-auto leading-relaxed" data-i18n="hero_subtitle">
-                The most advanced marketplace analytics engine ever built. Dominate the market with lightning speed.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="#pricing" class="group relative px-10 py-5 bg-accent text-white rounded-2xl font-bold text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(58,140,255,0.4)]">
-                    <span class="relative z-10" data-i18n="btn_get_started">GET STARTED</span>
-                    <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                </a>
-                <a href="#features" class="px-10 py-5 glass text-white rounded-2xl font-bold text-lg hover:bg-white/10 transition-all" data-i18n="btn_learn_more">LEARN MORE</a>
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4 min-h-screen flex flex-col justify-center items-center text-center relative">
+        <div class="absolute inset-0 bg-accent/10 blur-[100px] rounded-full w-[500px] h-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 text-gradient" data-aos="fade-up" data-i18n="hero_title">Next Generation Market Monitoring</h1>
+        <div class="h-8 mb-10">
+            <p class="text-xl md:text-2xl text-gray-400 typing-container" data-i18n="hero_subtitle">Monitor Vinted, OLX and other marketplaces instantly.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
+            <a href="#pricing" class="px-8 py-4 bg-accent text-white rounded-lg font-semibold hover:bg-blue-600 transition-all shadow-[0_0_15px_rgba(58,140,255,0.5)] hover:shadow-[0_0_25px_rgba(58,140,255,0.8)]" data-i18n="btn_trial">Start Free Trial</a>
+            <a href="#features" class="px-8 py-4 glass text-white rounded-lg font-semibold hover:bg-white/10 transition-all" data-i18n="btn_pro">See Pro Features</a>
+        </div>
+    </section>
+
+    <!-- App Showcase -->
+    <section id="showcase" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass p-2 rounded-2xl animate-glow" data-aos="zoom-in">
+                <div class="bg-black/50 rounded-xl aspect-video flex items-center justify-center border border-white/10 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent"></div>
+                    <span class="text-gray-500 text-lg" data-i18n="app_screenshot">App Screenshot Placeholder</span>
+                </div>
             </div>
-            <div class="mt-16 flex items-center justify-center gap-3 text-xs font-bold tracking-[0.2em] text-gray-500 uppercase" data-aos="fade-up" data-aos-delay="400">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span data-i18n="hero_status">SYSTEM STATUS: OPERATIONAL</span>
+            <div class="flex flex-col md:flex-row justify-center gap-8 mt-12 text-center">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-accent text-2xl mb-2">⚡</div>
+                    <h3 class="font-semibold" data-i18n="showcase_1">Multi-platform scanning</h3>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-accent text-2xl mb-2">🚀</div>
+                    <h3 class="font-semibold" data-i18n="showcase_2">Lightning fast alerts</h3>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-accent text-2xl mb-2">🎯</div>
+                    <h3 class="font-semibold" data-i18n="showcase_3">Advanced filtering</h3>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-32 px-6 relative">
+    <!-- Features Grid -->
+    <section id="features" class="py-20 px-4 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 animate-float" style="animation-delay: 0s;" data-aos="fade-up">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent mb-6 text-2xl">🌐</div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feat_1_title">Multi Platform Engine</h3>
+                    <p class="text-gray-400" data-i18n="feat_1_desc">Scan multiple marketplaces simultaneously.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 animate-float" style="animation-delay: 1s;" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent mb-6 text-2xl">🧠</div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feat_2_title">Smart Filters</h3>
+                    <p class="text-gray-400" data-i18n="feat_2_desc">Exclude unwanted listings instantly.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 animate-float" style="animation-delay: 2s;" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent mb-6 text-2xl">🔔</div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feat_3_title">Real Time Alerts</h3>
+                    <p class="text-gray-400" data-i18n="feat_3_desc">Windows desktop notifications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+     <section id="pricing" class="py-32 px-6 bg-black/40 border-y border-white/5">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight" data-i18n="feat_section_title">UNRIVALED PERFORMANCE</h2>
-                <div class="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+            <div class="text-center mb-24" data-aos="fade-down">
+                <h2 class="text-5xl md:text-7xl font-black mb-6 uppercase" data-i18n="pricing_title">Wybierz Swoją Moc</h2>
+                <p class="text-gray-500 font-medium italic" data-i18n="pricing_subtitle">Płać miesięcznie za najwyższą przewagę rynkową.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="glass p-10 rounded-3xl group hover:border-accent/30 transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8 group-hover:scale-110 transition-transform">
-                        <i data-lucide="zap" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4" data-i18n="feat_1_title">Lightning Engine</h3>
-                    <p class="text-gray-400 leading-relaxed" data-i18n="feat_1_desc">Proprietary scanning technology that delivers results in milliseconds. Be the first to see every deal.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- TRIAL -->
+                <div class="pricing-card glass p-8 rounded-[48px] flex flex-col group" data-aos="flip-left">
+                    <img src="trial.png" alt="Trial" class="plan-img w-32 h-32 mx-auto mb-8 rounded-full shadow-2xl border border-white/10" onerror="this.src='https://picsum.photos/200?random=1'">
+                    <h3 class="text-center font-bold text-gray-500 uppercase text-xs mb-2">Alpha Test</h3>
+                    <div class="text-center text-4xl font-black mb-8 italic" data-i18n="price_free">FREE</div>
+                    <ul class="space-y-4 mb-10 text-xs font-medium text-gray-500">
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-accent w-4 h-4"></i> 1 platform (Vinted)</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-accent w-4 h-4"></i> 60s Delay</li>
+                        <li class="flex items-center gap-3 text-red-500 opacity-50"><i data-lucide="x" class="w-4 h-4"></i> No Multi-search</li>
+                    </ul>
+                    <button onclick="openModal('TRIAL')" class="w-full py-5 rounded-2xl bg-white/5 border border-white/10 font-black hover:bg-white hover:text-black transition uppercase italic text-sm" data-i18n="btn_select">Start Testing</button>
                 </div>
-                <div class="glass p-10 rounded-3xl group hover:border-accent/30 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8 group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4" data-i18n="feat_2_title">Secure Filters</h3>
-                    <p class="text-gray-400 leading-relaxed" data-i18n="feat_2_desc">Advanced negative filtering system. Eliminate noise and focus only on high-value opportunities.</p>
+
+                <!-- BASIC -->
+                <div class="pricing-card glass p-8 rounded-[48px] flex flex-col group border-accent/20" data-aos="flip-left" data-aos-delay="100">
+                    <img src="basic.png" alt="Basic" class="plan-img w-32 h-32 mx-auto mb-8 rounded-full shadow-2xl border border-white/10" onerror="this.src='https://picsum.photos/200?random=2'">
+                    <h3 class="text-center font-bold text-accent uppercase text-xs mb-2 italic">Essential</h3>
+                    <div class="text-center text-4xl font-black mb-8 italic">10pln/per month<span class="text-sm">/mo</span></div>
+                    <ul class="space-y-4 mb-10 text-xs font-medium text-gray-400">
+                        <li class="flex items-center gap-3 font-bold text-white"><i data-lucide="check" class="text-accent w-4 h-4"></i> Vinted + OLX</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-accent w-4 h-4"></i> 30s Delay</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-accent w-4 h-4"></i> Negative Filters</li>
+                    </ul>
+                    <button onclick="openModal('BASIC')" class="w-full py-5 rounded-2xl glass font-black hover:bg-accent transition uppercase italic text-sm" data-i18n="btn_buy">Select Basic</button>
                 </div>
-                <div class="glass p-10 rounded-3xl group hover:border-accent/30 transition-all duration-500" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-8 group-hover:scale-110 transition-transform">
-                        <i data-lucide="radar" class="w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4" data-i18n="feat_3_title">Global Radar</h3>
-                    <p class="text-gray-400 leading-relaxed" data-i18n="feat_3_desc">Simultaneous monitoring across multiple marketplaces. All your data in one unified dashboard.</p>
+
+                <!-- PRO -->
+                <div class="pricing-card glass p-8 rounded-[48px] flex flex-col group bg-gradient-to-b from-accent/5 to-transparent border-accent/40 shadow-2xl shadow-accent/10" data-aos="flip-left" data-aos-delay="200">
+                    <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-accent text-[8px] font-black px-4 py-1 rounded-full uppercase tracking-[0.3em] shadow-lg shadow-accent/40" data-i18n="pop">Popular</div>
+                    <img src="pro.png" alt="Pro" class="plan-img w-32 h-32 mx-auto mb-8 rounded-full shadow-2xl border-4 border-accent" onerror="this.src='https://picsum.photos/200?random=3'">
+                    <h3 class="text-center font-bold text-white uppercase text-xs mb-2">Elite Master</h3>
+                    <div class="text-center text-4xl font-black mb-8 italic text-accent">20pln/per month<span class="text-white text-sm">/mo</span></div>
+                    <ul class="space-y-4 mb-10 text-xs font-semibold text-blue-50">
+                        <li class="flex items-center gap-3 font-black text-white"><i data-lucide="zap" class="text-accent w-4 h-4 animate-pulse"></i> 5 Search Slots</li>
+                        <li class="flex items-center gap-3 font-black text-white"><i data-lucide="check" class="text-accent w-4 h-4"></i> 10s Instant Scans</li>
+                        <li class="flex items-center gap-3"><i data-lucide="check" class="text-accent w-4 h-4"></i> Windows Notifications</li>
+                    </ul>
+                    <button onclick="openModal('PRO')" class="w-full py-6 rounded-2xl bg-accent text-white font-black hover:scale-105 transition uppercase italic text-base shadow-xl" data-i18n="btn_buy">Choose Elite</button>
+                </div>
+
+                <!-- DIAMOND -->
+                <div class="pricing-card glass p-8 rounded-[48px] flex flex-col group border-purple-500/20 hover:border-purple-500/60" data-aos="flip-left" data-aos-delay="300">
+                    <img src="diamond.png" alt="Diamond" class="plan-img w-32 h-32 mx-auto mb-8 rounded-full shadow-2xl border border-white/5 shadow-purple-500/10" onerror="this.src='https://picsum.photos/200?random=4'">
+                    <h3 class="text-center font-bold text-purple-400 uppercase text-xs mb-2 italic">Diamond Domination</h3>
+                    <div class="text-center text-4xl font-black mb-8 italic text-purple-200">50pln/per month<span class="text-gray-500 text-sm">/mo</span></div>
+                    <ul class="space-y-4 mb-10 text-xs font-black text-purple-100">
+                        <li class="flex items-center gap-3"><i data-lucide="gem" class="text-purple-500 w-4 h-4"></i> UNLIMITED TASKS</li>
+                        <li class="flex items-center gap-3 text-accent font-black"><i data-lucide="crown" class="w-4 h-4"></i> 2S SCAN DELAY</li>
+                        <li class="flex items-center gap-3"><i data-lucide="heart" class="text-purple-500 w-4 h-4"></i> VIP Discord Role</li>
+                    </ul>
+                    <button onclick="openModal('DIAMOND')" class="w-full py-5 rounded-2xl border-2 border-purple-600 text-purple-500 font-black hover:bg-purple-600 hover:text-white transition uppercase italic text-sm" data-i18n="btn_buy">Choose Diamond</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Screenshots Section -->
-    <section id="screenshots" class="py-32 px-6 bg-black/20">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight" data-i18n="screen_title">INTERFACE PREVIEW</h2>
-                <p class="text-gray-400 text-lg" data-i18n="screen_subtitle">Designed for clarity. Built for power.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="glass p-4 rounded-[2rem] border-accent/20 overflow-hidden group" data-aos="fade-right">
-                    <div class="aspect-video bg-dark rounded-2xl relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent"></div>
-                        <div class="p-8 h-full flex flex-col justify-between">
-                            <div class="flex justify-between items-start">
-                                <div class="space-y-2">
-                                    <div class="w-32 h-2 bg-white/10 rounded-full"></div>
-                                    <div class="w-24 h-2 bg-white/5 rounded-full"></div>
-                                </div>
-                                <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                                    <div class="w-4 h-4 rounded-full bg-accent animate-pulse"></div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-4 gap-4">
-                                <div class="h-20 glass rounded-xl"></div>
-                                <div class="h-20 glass rounded-xl"></div>
-                                <div class="h-20 glass rounded-xl"></div>
-                                <div class="h-20 glass rounded-xl"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-6 text-center font-bold tracking-widest text-xs text-gray-400 uppercase" data-i18n="screen_1_label">Main Dashboard</p>
-                </div>
-                <div class="glass p-4 rounded-[2rem] border-accent/20 overflow-hidden group" data-aos="fade-left">
-                    <div class="aspect-video bg-dark rounded-2xl relative overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-bl from-accent/10 to-transparent"></div>
-                        <div class="p-8 h-full flex flex-col justify-center items-center">
-                            <i data-lucide="activity" class="w-20 h-20 text-accent/30 mb-6"></i>
-                            <div class="w-full space-y-4">
-                                <div class="h-1 bg-accent/20 rounded-full w-full"></div>
-                                <div class="h-1 bg-accent/20 rounded-full w-3/4"></div>
-                                <div class="h-1 bg-accent/20 rounded-full w-1/2"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-6 text-center font-bold tracking-widest text-xs text-gray-400 uppercase" data-i18n="screen_2_label">Real-time Analytics</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight" data-i18n="pricing_section_title">ELITE ACCESS PLANS</h2>
-                <p class="text-gray-400 text-lg" data-i18n="pricing_section_subtitle">Choose the tier that matches your ambition.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Trial -->
-                <div class="pricing-card glass p-8 rounded-[2.5rem] flex flex-col items-center text-center relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="mb-8 relative">
-                        <div class="absolute inset-0 bg-accent/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <img src="trial.png" alt="Trial" class="pricing-img w-32 h-32 rounded-full object-cover border-4 border-white/5 relative z-10" onerror="this.src='https://picsum.photos/seed/trial/200'">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">TRIAL</h3>
-                    <div class="text-4xl font-black mb-8 text-accent">0 PLN</div>
-                    <ul class="space-y-4 mb-10 text-gray-400 font-medium text-sm flex-grow">
-                        <li data-i18n="p_trial_1">1 platform</li>
-                        <li data-i18n="p_trial_2">60s delay</li>
-                        <li data-i18n="p_trial_3">Manual scan</li>
-                    </ul>
-                    <button onclick="openPurchaseModal('TRIAL')" class="w-full py-4 glass rounded-2xl font-bold hover:bg-white/10 transition-all uppercase tracking-widest text-xs" data-i18n="btn_select">Select Plan</button>
-                </div>
-                <!-- Basic -->
-                <div class="pricing-card glass p-8 rounded-[2.5rem] flex flex-col items-center text-center relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="mb-8 relative">
-                        <div class="absolute inset-0 bg-accent/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <img src="basic.png" alt="Basic" class="pricing-img w-32 h-32 rounded-full object-cover border-4 border-white/5 relative z-10" onerror="this.src='https://picsum.photos/seed/basic/200'">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">BASIC</h3>
-                    <div class="text-4xl font-black mb-8 text-accent">10 PLN</div>
-                    <ul class="space-y-4 mb-10 text-gray-400 font-medium text-sm flex-grow">
-                        <li data-i18n="p_basic_1">2 platforms</li>
-                        <li data-i18n="p_basic_2">30s delay</li>
-                        <li data-i18n="p_basic_3">Negative filters</li>
-                    </ul>
-                    <button onclick="openPurchaseModal('BASIC')" class="w-full py-4 glass rounded-2xl font-bold hover:bg-white/10 transition-all uppercase tracking-widest text-xs" data-i18n="btn_select">Select Plan</button>
-                </div>
-                <!-- Pro -->
-                <div class="pricing-card glass p-8 rounded-[2.5rem] flex flex-col items-center text-center relative overflow-hidden group border-accent/30 shadow-[0_0_50px_rgba(58,140,255,0.1)]" data-aos="fade-up" data-aos-delay="300">
-                    <div class="absolute top-6 right-6 bg-accent text-white text-[10px] font-black px-3 py-1 rounded-full tracking-tighter" data-i18n="badge_popular">POPULAR</div>
-                    <div class="mb-8 relative">
-                        <div class="absolute inset-0 bg-accent/30 blur-2xl rounded-full opacity-100"></div>
-                        <img src="pro.png" alt="Pro" class="pricing-img w-32 h-32 rounded-full object-cover border-4 border-accent/50 relative z-10" onerror="this.src='https://picsum.photos/seed/pro/200'">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-accent">PRO</h3>
-                    <div class="text-4xl font-black mb-8 text-white">25 PLN</div>
-                    <ul class="space-y-4 mb-10 text-gray-300 font-medium text-sm flex-grow">
-                        <li data-i18n="p_pro_1">5 tasks simultaneously</li>
-                        <li data-i18n="p_pro_2">10s mode</li>
-                        <li data-i18n="p_pro_3">Desktop Alerts</li>
-                    </ul>
-                    <button onclick="openPurchaseModal('PRO')" class="w-full py-4 bg-accent text-white rounded-2xl font-bold hover:shadow-[0_0_20px_rgba(58,140,255,0.4)] transition-all uppercase tracking-widest text-xs" data-i18n="btn_select">Select Plan</button>
-                </div>
-                <!-- Diamond -->
-                <div class="pricing-card glass p-8 rounded-[2.5rem] flex flex-col items-center text-center relative overflow-hidden group border-accent/50 shadow-[0_0_60px_rgba(58,140,255,0.15)]" data-aos="fade-up" data-aos-delay="400">
-                    <div class="absolute top-6 right-6 bg-white text-dark text-[10px] font-black px-3 py-1 rounded-full tracking-tighter" data-i18n="badge_elite">ELITE</div>
-                    <div class="mb-8 relative">
-                        <div class="absolute inset-0 bg-accent/40 blur-3xl rounded-full opacity-100"></div>
-                        <img src="diamond.png" alt="Diamond" class="pricing-img w-32 h-32 rounded-full object-cover border-4 border-accent relative z-10 animate-pulse-slow" onerror="this.src='https://picsum.photos/seed/diamond/200'">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-white">DIAMOND</h3>
-                    <div class="text-4xl font-black mb-8 text-accent">50 PLN</div>
-                    <ul class="space-y-4 mb-10 text-gray-200 font-medium text-sm flex-grow">
-                        <li data-i18n="p_dia_1">2s scanning</li>
-                        <li data-i18n="p_dia_2">Unlimited tasks</li>
-                        <li data-i18n="p_dia_3">VIP Discord channel</li>
-                    </ul>
-                    <button onclick="openPurchaseModal('DIAMOND')" class="w-full py-4 bg-white text-dark rounded-2xl font-bold hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all uppercase tracking-widest text-xs" data-i18n="btn_select">Select Plan</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-32 px-6">
+    <!-- FAQ -->
+    <section id="faq" class="py-20 px-4">
         <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-20" data-aos="fade-up">
-                <h2 class="text-4xl font-extrabold mb-4 tracking-tight" data-i18n="faq_title">FREQUENTLY ASKED</h2>
-                <div class="w-16 h-1 bg-accent mx-auto rounded-full"></div>
-            </div>
-            <div class="space-y-6">
-                <div class="glass p-8 rounded-3xl cursor-pointer group transition-all" onclick="toggleFaq(this)" data-aos="fade-up">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-lg font-bold group-hover:text-accent transition-colors" data-i18n="faq_q1">Is there a free trial?</h4>
-                        <i data-lucide="plus" class="faq-icon text-accent w-6 h-6 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-400 mt-6 leading-relaxed" data-i18n="faq_a1">Yes, our Trial plan allows you to test the core engine with 1 platform and manual scanning capabilities.</p>
-                    </div>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gradient" data-aos="fade-up" data-i18n="faq_title">FAQ</h2>
+            <div class="space-y-4">
+                <div class="glass p-6 rounded-xl cursor-pointer" onclick="this.classList.toggle('active-faq')" data-aos="fade-up">
+                    <h4 class="font-bold flex justify-between" data-i18n="faq_q1">Is there a free trial? <span class="text-accent">+</span></h4>
+                    <p class="text-gray-400 mt-4 hidden faq-answer" data-i18n="faq_a1">Yes, we offer a free trial plan with limited features.</p>
                 </div>
-                <div class="glass p-8 rounded-3xl cursor-pointer group transition-all" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-lg font-bold group-hover:text-accent transition-colors" data-i18n="faq_q2">Does the license expire?</h4>
-                        <i data-lucide="plus" class="faq-icon text-accent w-6 h-6 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-400 mt-6 leading-relaxed" data-i18n="faq_a2">Licenses are subscription-based and billed monthly. You can upgrade or downgrade at any time via our Discord support.</p>
-                    </div>
+                <div class="glass p-6 rounded-xl cursor-pointer" onclick="this.classList.toggle('active-faq')" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="font-bold flex justify-between" data-i18n="faq_q2">Does the license expire? <span class="text-accent">+</span></h4>
+                    <p class="text-gray-400 mt-4 hidden faq-answer" data-i18n="faq_a2">Licenses are billed monthly. You can cancel anytime.</p>
                 </div>
-                <div class="glass p-8 rounded-3xl cursor-pointer group transition-all" onclick="toggleFaq(this)" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-lg font-bold group-hover:text-accent transition-colors" data-i18n="faq_q3">How many devices can I use?</h4>
-                        <i data-lucide="plus" class="faq-icon text-accent w-6 h-6 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="text-gray-400 mt-6 leading-relaxed" data-i18n="faq_a3">Each license is tied to a single HWID. You can request a device transfer once per month if needed.</p>
-                    </div>
+                <div class="glass p-6 rounded-xl cursor-pointer" onclick="this.classList.toggle('active-faq')" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="font-bold flex justify-between" data-i18n="faq_q3">How many devices can I use? <span class="text-accent">+</span></h4>
+                    <p class="text-gray-400 mt-4 hidden faq-answer" data-i18n="faq_a3">One license is valid for one device simultaneously.</p>
+                </div>
+                <div class="glass p-6 rounded-xl cursor-pointer" onclick="this.classList.toggle('active-faq')" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="font-bold flex justify-between" data-i18n="faq_q4">Which marketplaces are supported? <span class="text-accent">+</span></h4>
+                    <p class="text-gray-400 mt-4 hidden faq-answer" data-i18n="faq_a4">Vinted, OLX, eBay, and more being added regularly.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="py-32 px-6 border-t border-white/5 bg-black/40">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-5xl md:text-9xl font-black mb-12 tracking-tighter opacity-10 select-none" data-i18n="footer_big_text">JOIN THE ELITE</h2>
-            <div class="flex flex-col items-center gap-10">
-                <a href="https://discord.gg/zephyr_proto" target="_blank" class="group flex items-center gap-4 px-12 py-6 glass rounded-3xl hover:border-accent/50 transition-all hover:shadow-[0_0_30px_rgba(58,140,255,0.1)]">
-                    <i data-lucide="message-square" class="w-8 h-8 text-accent"></i>
-                    <span class="text-xl md:text-2xl font-black tracking-widest">DISCORD: zephyr_proto</span>
-                </a>
-                <div class="flex gap-12 text-xs font-bold tracking-[0.3em] text-gray-500 uppercase">
-                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_terms">Terms</a>
-                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_privacy">Privacy</a>
-                    <a href="#" class="hover:text-white transition-colors" data-i18n="footer_support">Support</a>
-                </div>
-                <p class="text-gray-600 text-[10px] font-bold tracking-widest uppercase mt-10" data-i18n="footer_copy">© PRO ANALYTICS 2026 | ALL RIGHTS RESERVED</p>
+    <footer id="contact" class="py-12 border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-400">© Pro Analytics 2026</div>
+            <div class="flex space-x-6 text-gray-400">
+                <a href="#" class="hover:text-accent transition-colors">Email</a>
+                <a href="#" class="hover:text-accent transition-colors">Discord</a>
+                <a href="#" class="hover:text-accent transition-colors" data-i18n="footer_tos">Terms of Service</a>
+                <a href="#" class="hover:text-accent transition-colors" data-i18n="footer_privacy">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top -->
-    <button id="scroll-top" class="fixed bottom-10 right-10 z-[90] w-14 h-14 glass rounded-2xl flex items-center justify-center text-accent opacity-0 translate-y-10 pointer-events-none transition-all duration-500 hover:bg-accent hover:text-white">
-        <i data-lucide="arrow-up" class="w-6 h-6"></i>
-    </button>
-
     <!-- Purchase Modal -->
-    <div id="purchase-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[100] items-center justify-center p-6">
-        <div class="glass p-12 rounded-[3rem] max-w-lg w-full relative border border-accent/20 shadow-[0_0_100px_rgba(58,140,255,0.15)] text-center" data-aos="zoom-in">
-            <button onclick="closePurchaseModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors">
-                <i data-lucide="x" class="w-8 h-8"></i>
-            </button>
-            <div class="w-20 h-20 bg-accent/10 rounded-3xl flex items-center justify-center text-accent mx-auto mb-10">
-                <i data-lucide="shopping-cart" class="w-10 h-10"></i>
-            </div>
-            <h3 class="text-3xl font-black mb-4 uppercase tracking-tighter" id="modal-plan-name">PLAN NAME</h3>
-            <div class="w-12 h-1 bg-accent mx-auto mb-10 rounded-full"></div>
+    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] items-center justify-center p-4">
+        <div class="glass p-8 rounded-2xl max-w-md w-full relative border border-accent/30 shadow-[0_0_30px_rgba(58,140,255,0.2)]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">&times;</button>
+            <h3 class="text-2xl font-bold mb-2" id="modal-title">Purchase Plan</h3>
+            <p class="text-gray-400 mb-6" id="modal-desc">Enter your details to get your license key.</p>
             
-            <div class="space-y-8">
-                <div class="p-6 bg-white/5 rounded-3xl border border-white/5">
-                    <p class="text-gray-400 text-sm font-bold tracking-widest uppercase mb-2" data-i18n="modal_contact_label">Contact to purchase</p>
-                    <p class="text-2xl font-black text-accent tracking-tight">zephyr_proto (Discord)</p>
+            <div id="payment-form">
+                <input type="email" placeholder="Email address" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 mb-6 text-white outline-none focus:border-accent transition-colors">
+                <div class="space-y-3">
+                    <button onclick="simulatePayment()" class="w-full py-3 bg-[#0070ba] text-white rounded-lg font-semibold hover:bg-[#005ea6] transition-colors">PayPal</button>
+                    <button onclick="simulatePayment()" class="w-full py-3 bg-[#f7931a] text-white rounded-lg font-semibold hover:bg-[#e08415] transition-colors">Crypto</button>
+                    <button onclick="simulatePayment()" class="w-full py-3 glass text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">Card (Placeholder)</button>
                 </div>
-                <p class="text-gray-400 leading-relaxed font-medium" data-i18n="modal_instruction">
-                    Send a direct message with the name of your selected plan to initiate the elite onboarding process.
-                </p>
-                <a href="https://discord.gg/zephyr_proto" target="_blank" class="block w-full py-5 bg-accent text-white rounded-2xl font-black tracking-widest text-sm hover:shadow-[0_0_30px_rgba(58,140,255,0.3)] transition-all" data-i18n="btn_open_discord">
-                    OPEN DISCORD
-                </a>
+            </div>
+
+            <div id="success-view" class="hidden text-center py-4">
+                <div class="text-green-400 text-5xl mb-4">✓</div>
+                <h4 class="text-xl font-bold mb-2" data-i18n="modal_success">License generated successfully</h4>
+                <div class="bg-black/50 border border-accent/50 p-4 rounded-lg font-mono text-accent mb-6 tracking-wider" id="license-key">
+                    PA-PRO-XXXXX-XXXXX-XXXXX
+                </div>
+                <button onclick="closeModal()" class="w-full py-3 bg-accent text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-[0_0_10px_rgba(58,140,255,0.4)]" data-i18n="btn_download">Download App</button>
             </div>
         </div>
     </div>
 
+    <style>
+        .active-faq .faq-answer { display: block; }
+        .active-faq span { transform: rotate(45deg); display: inline-block; transition: transform 0.3s; }
+    </style>
+
     <script>
-        // Initialize AOS
-        AOS.init({ duration: 1000, once: true, easing: 'ease-out-cubic' });
-        
-        // Initialize Lucide
-        lucide.createIcons();
+        AOS.init({ duration: 800, once: true });
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            const scrollTopBtn = document.getElementById('scroll-top');
-            
-            if (window.scrollY > 100) {
-                nav.classList.add('py-2', 'bg-black/80', 'backdrop-blur-2xl');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark/90', 'shadow-lg');
                 nav.classList.remove('py-4');
-                scrollTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+                nav.classList.add('py-2');
             } else {
-                nav.classList.remove('py-2', 'bg-black/80', 'backdrop-blur-2xl');
+                nav.classList.remove('bg-dark/90', 'shadow-lg');
                 nav.classList.add('py-4');
-                scrollTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+                nav.classList.remove('py-2');
             }
         });
 
-        document.getElementById('scroll-top').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // FAQ Toggle
-        function toggleFaq(element) {
-            element.classList.toggle('active-faq');
-        }
-
         // Modal Logic
-        function openPurchaseModal(plan) {
-            document.getElementById('modal-plan-name').innerText = plan;
-            document.getElementById('purchase-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+        let currentPlan = '';
+        function openModal(plan) {
+            currentPlan = plan;
+            document.getElementById('modal-title').innerText = `Purchase ${plan} Plan`;
+            document.getElementById('modal').classList.add('active');
+            document.getElementById('payment-form').classList.remove('hidden');
+            document.getElementById('success-view').classList.add('hidden');
         }
 
-        function closePurchaseModal() {
-            document.getElementById('purchase-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
         }
 
-        // Language Switcher Logic
+        function generateLicense(plan) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const randomSegment = () => Array.from({length: 5}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+            return `PA-${plan}-${randomSegment()}-${randomSegment()}-${randomSegment()}`;
+        }
+
+        function simulatePayment() {
+            document.getElementById('payment-form').classList.add('hidden');
+            document.getElementById('success-view').classList.remove('hidden');
+            document.getElementById('license-key').innerText = generateLicense(currentPlan);
+        }
+
+        // Language Switcher
         const translations = {
             EN: {
-                nav_features: "Features", nav_pricing: "Pricing", nav_faq: "FAQ", nav_contact: "Contact", nav_screenshots: "Screenshots",
-                hero_title: "ELITE COMMERCIAL MONITORING",
-                hero_subtitle: "The most advanced marketplace analytics engine ever built. Dominate the market with lightning speed.",
-                btn_get_started: "GET STARTED", btn_learn_more: "LEARN MORE",
-                feat_section_title: "UNRIVALED PERFORMANCE",
-                feat_1_title: "Lightning Engine", feat_1_desc: "Proprietary scanning technology that delivers results in milliseconds. Be the first to see every deal.",
-                feat_2_title: "Secure Filters", feat_2_desc: "Advanced negative filtering system. Eliminate noise and focus only on high-value opportunities.",
-                feat_3_title: "Global Radar", feat_3_desc: "Simultaneous monitoring across multiple marketplaces. All your data in one unified dashboard.",
-                screen_title: "INTERFACE PREVIEW", screen_subtitle: "Designed for clarity. Built for power.",
-                screen_1_label: "Main Dashboard", screen_2_label: "Real-time Analytics",
-                pricing_section_title: "ELITE ACCESS PLANS", pricing_section_subtitle: "Choose the tier that matches your ambition.",
-                p_trial_1: "1 platform", p_trial_2: "60s delay", p_trial_3: "Manual scan",
-                p_basic_1: "2 platforms", p_basic_2: "30s delay", p_basic_3: "Negative filters",
-                p_pro_1: "5 tasks simultaneously", p_pro_2: "10s mode", p_pro_3: "Desktop Alerts",
-                p_dia_1: "2s scanning", p_dia_2: "Unlimited tasks", p_dia_3: "VIP Discord channel",
-                btn_select: "Select Plan", badge_popular: "POPULAR", badge_elite: "ELITE",
-                faq_title: "FREQUENTLY ASKED",
-                faq_q1: "Is there a free trial?", faq_a1: "Yes, our Trial plan allows you to test the core engine with 1 platform and manual scanning capabilities.",
-                faq_q2: "Does the license expire?", faq_a2: "Licenses are subscription-based and billed monthly. You can upgrade or downgrade at any time via our Discord support.",
-                faq_q3: "How many devices can I use?", faq_a3: "Each license is tied to a single HWID. You can request a device transfer once per month if needed.",
-                footer_terms: "Terms", footer_privacy: "Privacy", footer_support: "Support",
-                footer_big_text: "JOIN THE ELITE",
-                footer_copy: "© PRO ANALYTICS 2026 | ALL RIGHTS RESERVED",
-                hero_status: "SYSTEM STATUS: OPERATIONAL",
-                modal_contact_label: "Contact to purchase",
-                modal_instruction: "Send a direct message with the name of your selected plan to initiate the elite onboarding process.",
-                btn_open_discord: "OPEN DISCORD"
+                nav_features: "Features", nav_screenshots: "Screenshots", nav_pricing: "Pricing", nav_faq: "FAQ", nav_contact: "Contact",
+                hero_title: "Next Generation Market Monitoring", hero_subtitle: "Monitor Vinted, OLX and other marketplaces instantly.",
+                btn_trial: "Start Free Trial", btn_pro: "See Pro Features",
+                app_screenshot: "App Screenshot Placeholder",
+                showcase_1: "Multi-platform scanning", showcase_2: "Lightning fast alerts", showcase_3: "Advanced filtering",
+                feat_1_title: "Multi Platform Engine", feat_1_desc: "Scan multiple marketplaces simultaneously.",
+                feat_2_title: "Smart Filters", feat_2_desc: "Exclude unwanted listings instantly.",
+                feat_3_title: "Real Time Alerts", feat_3_desc: "Windows desktop notifications.",
+                pricing_title: "Choose Your Plan", price_trial: "Free",
+                feat_trial_1: "1 platform", feat_trial_2: "60s delay", feat_trial_3: "manual scan",
+                feat_basic_1: "2 platforms (Vinted/OLX)", feat_basic_2: "30s delay", feat_basic_3: "negative filters",
+                feat_pro_1: "5 platforms simultaneously", feat_pro_2: "10s delay", feat_pro_3: "Windows alerts",
+                feat_dia_1: "Instant search (2s)", feat_dia_2: "Unlimited tasks", feat_dia_3: "Priority Discord support",
+                badge_rec: "Recommended", btn_buy: "Buy License",
+                faq_title: "FAQ",
+                faq_q1: "Is there a free trial?", faq_a1: "Yes, we offer a free trial plan with limited features.",
+                faq_q2: "Does the license expire?", faq_a2: "Licenses are billed monthly. You can cancel anytime.",
+                faq_q3: "How many devices can I use?", faq_a3: "One license is valid for one device simultaneously.",
+                faq_q4: "Which marketplaces are supported?", faq_a4: "Vinted, OLX, eBay, and more being added regularly.",
+                footer_tos: "Terms of Service", footer_privacy: "Privacy Policy",
+                modal_success: "License generated successfully", btn_download: "Download App"
             },
             PL: {
-                nav_features: "Funkcje", nav_pricing: "Cennik", nav_faq: "FAQ", nav_contact: "Kontakt", nav_screenshots: "Screeny",
-                hero_title: "ELITARNY MONITORING KOMERCYJNY",
-                hero_subtitle: "Najbardziej zaawansowany silnik analityczny jaki kiedykolwiek powstał. Zdominuj rynek z prędkością światła.",
-                btn_get_started: "ZACZNIJ TERAZ", btn_learn_more: "DOWIEDZ SIĘ WIĘCEJ",
-                feat_section_title: "NIEZRÓWNANA WYDAJNOŚĆ",
-                feat_1_title: "Silnik Błyskawica", feat_1_desc: "Autorska technologia skanowania dostarczająca wyniki w milisekundach. Bądź pierwszy przy każdej okazji.",
-                feat_2_title: "Bezpieczne Filtry", feat_2_desc: "Zaawansowany system filtrów negatywnych. Wyeliminuj szum i skup się na okazjach o wysokiej wartości.",
-                feat_3_title: "Globalny Radar", feat_3_desc: "Równoczesne monitorowanie wielu platform. Wszystkie dane w jednym zunifikowanym panelu.",
-                screen_title: "PODGLĄD INTERFEJSU", screen_subtitle: "Zaprojektowany dla przejrzystości. Zbudowany dla mocy.",
-                screen_1_label: "Główny Panel", screen_2_label: "Analityka w czasie rzeczywistym",
-                pricing_section_title: "PLANY DOSTĘPU ELITE", pricing_section_subtitle: "Wybierz poziom odpowiadający Twoim ambicjom.",
-                p_trial_1: "1 platforma", p_trial_2: "60s opóźnienia", p_trial_3: "Skanowanie ręczne",
-                p_basic_1: "2 platformy", p_basic_2: "30s opóźnienia", p_basic_3: "Filtry negatywne",
-                p_pro_1: "5 zadań jednocześnie", p_pro_2: "Tryb 10s", p_pro_3: "Alerty Desktop",
-                p_dia_1: "Skanowanie 2s", p_dia_2: "Nielimitowane zadania", p_dia_3: "Kanał VIP Discord",
-                btn_select: "Wybierz Plan", badge_popular: "POPULARNE", badge_elite: "ELITARNE",
-                faq_title: "CZĘSTO ZADAWANE",
-                faq_q1: "Czy jest darmowy okres próbny?", faq_a1: "Tak, nasz plan Trial pozwala przetestować silnik na 1 platformie z ręcznym skanowaniem.",
-                faq_q2: "Czy licencja wygasa?", faq_a2: "Licencje są subskrypcyjne i rozliczane miesięcznie. Możesz zmienić plan w dowolnym momencie przez wsparcie Discord.",
-                faq_q3: "Na ilu urządzeniach mogę korzystać?", faq_a3: "Każda licencja jest przypisana do jednego HWID. Możesz poprosić o przeniesienie raz w miesiącu.",
-                footer_terms: "Regulamin", footer_privacy: "Prywatność", footer_support: "Wsparcie",
-                footer_big_text: "DOŁĄCZ DO ELITY",
-                footer_copy: "© PRO ANALYTICS 2026 | WSZELKIE PRAWA ZASTRZEŻONE",
-                hero_status: "STATUS SYSTEMU: OPERACYJNY",
-                modal_contact_label: "Kontakt w sprawie zakupu",
-                modal_instruction: "Wyślij wiadomość prywatną z nazwą wybranego planu, aby rozpocząć proces elitarnego wdrożenia.",
-                btn_open_discord: "OTWÓRZ DISCORD"
+                nav_features: "Funkcje", nav_screenshots: "Zrzuty ekranu", nav_pricing: "Cennik", nav_faq: "FAQ", nav_contact: "Kontakt",
+                hero_title: "Monitorowanie Rynku Nowej Generacji", hero_subtitle: "Monitoruj Vinted, OLX i inne platformy natychmiast.",
+                btn_trial: "Rozpocznij Okres Próbny", btn_pro: "Zobacz Funkcje Pro",
+                app_screenshot: "Miejsce na zrzut ekranu",
+                showcase_1: "Skanowanie wielu platform", showcase_2: "Błyskawiczne powiadomienia", showcase_3: "Zaawansowane filtry",
+                feat_1_title: "Silnik Wieloplatformowy", feat_1_desc: "Skanuj wiele platform sprzedażowych jednocześnie.",
+                feat_2_title: "Inteligentne Filtry", feat_2_desc: "Błyskawicznie wykluczaj niechciane oferty.",
+                feat_3_title: "Powiadomienia w Czasie Rzeczywistym", feat_3_desc: "Powiadomienia na pulpicie Windows.",
+                pricing_title: "Wybierz Swój Plan", price_trial: "Za darmo",
+                feat_trial_1: "1 platforma", feat_trial_2: "60s opóźnienia", feat_trial_3: "skanowanie ręczne",
+                feat_basic_1: "2 platformy (Vinted/OLX)", feat_basic_2: "30s opóźnienia", feat_basic_3: "filtry negatywne",
+                feat_pro_1: "5 platform jednocześnie", feat_pro_2: "10s opóźnienia", feat_pro_3: "powiadomienia Windows",
+                feat_dia_1: "Błyskawiczne wyszukiwanie (2s)", feat_dia_2: "Nielimitowane zadania", feat_dia_3: "Priorytetowe wsparcie Discord",
+                badge_rec: "Polecane", btn_buy: "Kup Licencję",
+                faq_title: "FAQ",
+                faq_q1: "Czy jest darmowy okres próbny?", faq_a1: "Tak, oferujemy darmowy plan z ograniczonymi funkcjami.",
+                faq_q2: "Czy licencja wygasa?", faq_a2: "Licencje są rozliczane miesięcznie. Możesz zrezygnować w każdej chwili.",
+                faq_q3: "Na ilu urządzeniach mogę korzystać?", faq_a3: "Jedna licencja jest ważna na jednym urządzeniu jednocześnie.",
+                faq_q4: "Jakie platformy są obsługiwane?", faq_a4: "Vinted, OLX, eBay i inne są regularnie dodawane.",
+                footer_tos: "Regulamin", footer_privacy: "Polityka Prywatności",
+                modal_success: "Licencja wygenerowana pomyślnie", btn_download: "Pobierz Aplikację"
             }
         };
 
         let currentLang = 'EN';
         const langToggle = document.getElementById('lang-toggle');
-        const langText = document.getElementById('lang-text');
 
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'EN' ? 'PL' : 'EN';
-            langText.innerText = currentLang;
-            updateLanguage();
-        });
-
-        function updateLanguage() {
+            langToggle.innerText = currentLang;
+            
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
+                    // Check if it's the FAQ question to preserve the '+' span
+                    if (key.startsWith('faq_q')) {
+                        el.innerHTML = translations[currentLang][key] + ' <span class="text-accent">+</span>';
+                    } else {
+                        el.innerText = translations[currentLang][key];
+                    }
                 }
             });
-        }
+        });
     </script>
 </body>
 </html>
